@@ -14,7 +14,7 @@ client.on('ready', (c) =>{
     console.log(`${c.user.tag} is online.`);
 });
 client.on('messageCreate', (message) => {
-    if (message.content === hug?) {
+    if (message.content === 'hug?') {
         message.reply(`YES :pleading_face:`);
     }
 });
