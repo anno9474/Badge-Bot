@@ -13,7 +13,11 @@ const client = new Client({
 client.on('ready', (c) =>{
     console.log(`${c.user.tag} is online.`);
 });
-
+client.on('messageCreate', (message) => {
+    if (message.content === hug?) {
+        message.reply(`YES :pleading_face:`);
+    }
+});
 client.on('messageCreate', (message) => {
     if (message.content === 'lazy') {
         message.reply(`Aren't we all lazy?`);
