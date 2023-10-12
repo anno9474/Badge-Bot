@@ -10,52 +10,59 @@ const client = new Client({
         IntentsBitField.Flags.MessageContent,
     ],
 });
-
+const isFizzBuzzMessage = ( message ) => {
+    const content = message.content.toLowerCase();
+    if (message.author.bot) return;
+    return !isNaN(content) || content === 'fizz' || content === 'buzz' || content === 'fizzbuzz';
+}
 client.on('ready', (c) =>{
     console.log(`${c.user.tag} is online.`);
 });
 client.on('messageCreate', (message) => {
-   if (message.author.id === client.user.id) return;
-   if (message.content.toLowerCase() === '!fizzbuzz start') {
+    const content = message.content.toLowerCase();
+   if (content === '!fizzbuzz start') {
        counter = 1;
        message.reply(`Let's play **FizzBuzz** \n Me first: 1`);
        counter++;
-   } else if (message.content.toLowerCase() === '!fizzbuzz stop') {
+   } else if (content === '!fizzbuzz stop') {
        message.reply('Game stopped.');
        counter = 1;
    } else {
-       const content = message.content.toLowerCase();
-       let expected = '';
-
-       if (counter % 3 === 0 && counter % 5 === 0) {
-           expected = 'fizzbuzz';
-       } else if (counter % 3 === 0 ) {
-           expected = 'fizz';
-       } else if (counter % 5 === 0) {
-           expected = 'buzz';
-       } else {
-           expected = counter.toString();
-       }
-
-       if (content === expected) {
-           counter++
-           let next = '';
+       if (isFizzBuzzMessage(message)) {
+           let expected = '';
 
            if (counter % 3 === 0 && counter % 5 === 0) {
-               next = 'FizzBuzz';
-           } else if (counter % 3 === 0) {
-               next = 'Fizz';
+               expected = 'fizzbuzz';
+           } else if (counter % 3 === 0 ) {
+               expected = 'fizz';
            } else if (counter % 5 === 0) {
-               next = 'Buzz';
+               expected = 'buzz';
            } else {
-               next = counter;
+               expected = counter.toString();
            }
 
-           message.reply(`:tada:**Correct!**:tada: \n The next number is ${next}.`);
-           counter++;
+           if (content === expected) {
+               counter++
+               let next = '';
+
+               if (counter % 3 === 0 && counter % 5 === 0) {
+                   next = 'FizzBuzz';
+               } else if (counter % 3 === 0) {
+                   next = 'Fizz';
+               } else if (counter % 5 === 0) {
+                   next = 'Buzz';
+               } else {
+                   next = counter;
+               }
+
+               message.reply(`:tada:**Correct!**:tada: \n The next number is ${next}.`);
+               counter++;
+           } else {
+               message.reply(`:no_entry_sign:**Wrong**:no_entry_sign: \n The correct answer was ${expected}.`);
+           }
        } else {
-           message.reply(`:no_entry_sign:**Wrong**:no_entry_sign: \n The correct answer was ${expected}.`);
-       }
+           return;
+       };
    }
 });
 client.on('messageCreate', (message) => {
