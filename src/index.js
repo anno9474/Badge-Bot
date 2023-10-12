@@ -15,6 +15,7 @@ client.on('ready', (c) =>{
     console.log(`${c.user.tag} is online.`);
 });
 client.on('messageCreate', (message) => {
+   if (message.author.bot) return;
    if (message.content.toLowerCase() === '!fizzbuzz start') {
        counter = 1;
        message.reply(`Let's play **FizzBuzz** \n Me first: 1`);
@@ -50,10 +51,10 @@ client.on('messageCreate', (message) => {
                next = counter;
            }
 
-           message.reply(`:tada:**Correct!**:tada: The next number is ${next}.`);
+           message.reply(`:tada:**Correct!**:tada: \n The next number is ${next}.`);
            counter++;
        } else {
-           message.reply(`:no_entry_sign:**Wrong**:no_entry_sign: The correct answer was ${expected}.`);
+           message.reply(`:no_entry_sign:**Wrong**:no_entry_sign: \n The correct answer was ${expected}.`);
        }
    }
 });
