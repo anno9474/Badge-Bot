@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Client, IntentsBitField, GuildChannel} = require('discord.js');
+const { Client, IntentsBitField} = require('discord.js');
 let counter = 1;
 
 const client = new Client({
@@ -15,7 +15,7 @@ client.on('ready', (c) =>{
     console.log(`${c.user.tag} is online.`);
 });
 client.on('messageCreate', (message) => {
-   if (message.author.bot) return;
+   if (message.author.id === client.user.id) return;
    if (message.content.toLowerCase() === '!fizzbuzz start') {
        counter = 1;
        message.reply(`Let's play **FizzBuzz** \n Me first: 1`);
