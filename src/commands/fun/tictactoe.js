@@ -8,17 +8,17 @@ module.exports = {
 
         const first_button = new ButtonBuilder()
             .setCustomId('first_button')
-            .setLabel(' ')
+            .setLabel('-')
             .setStyle(ButtonStyle.Secondary);
 
         const second_button = new ButtonBuilder()
             .setCustomId('second_button')
-            .setLabel(' ')
+            .setLabel('-')
             .setStyle(ButtonStyle.Secondary);
 
         const third_button = new ButtonBuilder()
             .setCustomId('third_button')
-            .setLabel(' ')
+            .setLabel('-')
             .setStyle(ButtonStyle.Secondary);
 
         const row = new ActionRowBuilder()
