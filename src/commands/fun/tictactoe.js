@@ -8,16 +8,21 @@ module.exports = {
 
         const first_button = new ButtonBuilder()
             .setCustomId('first_button')
-            .setLabel('First!')
-            .setStyle(ButtonStyle.Danger);
+            .setLabel(' ')
+            .setStyle(ButtonStyle.Secondary);
 
         const second_button = new ButtonBuilder()
             .setCustomId('second_button')
-            .setLabel('Second!')
-            .setStyle(ButtonStyle.Primary);
+            .setLabel(' ')
+            .setStyle(ButtonStyle.Secondary);
+
+        const third_button = new ButtonBuilder()
+            .setCustomId('third_button')
+            .setLabel(' ')
+            .setStyle(ButtonStyle.Secondary);
 
         const row = new ActionRowBuilder()
-            .addComponents(first_button, second_button);
+            .addComponents(first_button, second_button, third_button);
 
         await interaction.reply({
             content: "Let's Play!",
