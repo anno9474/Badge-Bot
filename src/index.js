@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { Client, IntentsBitField} = require('discord.js');
 let counter = 1;
+let currently_playing = 0;
 
 const client = new Client({
     intents: [
@@ -13,6 +14,7 @@ const client = new Client({
 const isFizzBuzzMessage = ( message ) => {
     const content = message.content.toLowerCase();
     if (message.channel.name !== "fizzbuzz") return;
+    if (currently_playing === 0 ) return;
     if (message.author.bot) return;
     return !isNaN(content) || content === 'fizz' || content === 'buzz' || content === 'fizzbuzz';
 }
@@ -23,11 +25,13 @@ client.on('messageCreate', (message) => {
     const content = message.content.toLowerCase();
    if (content === '!fizzbuzz start') {
        counter = 1;
+       currently_playing = 1;
        message.reply(`Let's play **FizzBuzz** \n Me first: 1`);
        counter++;
    } else if (content === '!fizzbuzz stop') {
        message.reply('Game stopped.');
        counter = 1;
+       currently_playing = 0;
    } else {
        if (isFizzBuzzMessage(message)) {
 
