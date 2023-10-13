@@ -82,13 +82,4 @@ client.on('messageCreate', (message) => {
     }
 });
 
-client.on('interactionCreate', async interaction => {
-    if (!interaction.isCommand()) return;
-
-    const { commandName } = interaction;
-
-    if (commandName === 'hello') {
-        await interaction.reply('Hello World!');
-    }
-});
 client.login(process.env.TOKEN);
