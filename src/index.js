@@ -89,7 +89,7 @@ client.on('interactionCreate', async interaction => {
 
     const { commandName } = interaction;
 
-    if commandName === 'hello' {
+    if (commandName === 'hello') {
         await interaction.reply{'Hello World!'};
     }
 });
