@@ -19,9 +19,12 @@ module.exports = {
         const row = new ActionRowBuilder()
             .addComponents(first_button, second_button);
 
+        const secondRow = new ActionRowBuilder()
+            .addComponents(second_button, first_button);
+
         await interaction.reply({
             content: "Let's Play!",
-            components: [row],
+            components: [row, secondRow],
         });
     },
 };
