@@ -12,6 +12,7 @@ const client = new Client({
 });
 const isFizzBuzzMessage = ( message ) => {
     const content = message.content.toLowerCase();
+    if (message.channel.name !== "fizzbuzz") return;
     if (message.author.bot) return;
     return !isNaN(content) || content === 'fizz' || content === 'buzz' || content === 'fizzbuzz';
 }
@@ -29,7 +30,6 @@ client.on('messageCreate', (message) => {
        counter = 1;
    } else {
        if (isFizzBuzzMessage(message)) {
-           let expected = '';
 
            if (counter % 3 === 0 && counter % 5 === 0) {
                expected = 'fizzbuzz';
@@ -43,7 +43,6 @@ client.on('messageCreate', (message) => {
 
            if (content === expected) {
                counter++
-               let next = '';
 
                if (counter % 3 === 0 && counter % 5 === 0) {
                    next = 'FizzBuzz';
@@ -62,7 +61,7 @@ client.on('messageCreate', (message) => {
            }
        } else {
            return;
-       };
+       }
    }
 });
 client.on('messageCreate', (message) => {
