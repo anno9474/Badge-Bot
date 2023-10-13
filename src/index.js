@@ -64,8 +64,6 @@ client.on('messageCreate', (message) => {
            } else {
                message.reply(`:no_entry_sign:**Wrong**:no_entry_sign: \n The correct answer was ${expected}.`);
            }
-       } else {
-           return;
        }
    }
 });
@@ -90,7 +88,7 @@ client.on('interactionCreate', async interaction => {
     const { commandName } = interaction;
 
     if (commandName === 'hello') {
-        await interaction.reply{'Hello World!'};
+        await interaction.reply('Hello World!');
     }
 });
 client.login(process.env.TOKEN);
