@@ -21,6 +21,7 @@ const isFizzBuzzMessage = ( message ) => {
 client.on('ready', (c) =>{
     console.log(`${c.user.tag} is online.`);
 });
+//FizzBuzz
 client.on('messageCreate', (message) => {
     const content = message.content.toLowerCase();
    if (content === '!fizzbuzz start') {
@@ -68,15 +69,28 @@ client.on('messageCreate', (message) => {
        }
    }
 });
+
+//hug?
 client.on('messageCreate', (message) => {
     if (message.content === 'hug?') {
         message.reply(`YES :pleading_face:`);
     }
 });
+
+//lazy
 client.on('messageCreate', (message) => {
     if (message.content === 'lazy') {
         message.reply(`Aren't we all lazy?`);
     }
 });
 
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isCommand()) return;
+
+    const { commandName } = interaction;
+
+    if commandName === 'hello' {
+        await interaction.reply{'Hello World!'};
+    }
+});
 client.login(process.env.TOKEN);
