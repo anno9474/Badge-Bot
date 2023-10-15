@@ -27,7 +27,7 @@ module.exports = {
             .addComponents(select);
 
         await interaction.reply({
-            content: 'Choose your starter!',
+            content: 'Choose your Gender!',
             components: [row],
         });
     },
