@@ -1,10 +1,10 @@
-const { ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, SlashCommandBuilder } = require('discord.js');
+const { ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, SlashCommandBuilder, ComponentType } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('gender')
         .setDescription('Pick what you want!'),
-    async execute(interaction) {
+    execute: async function (interaction) {
         const select = new StringSelectMenuBuilder()
             .setCustomId('gender')
             .setPlaceholder('Tell me your Gender!')
@@ -31,7 +31,10 @@ module.exports = {
             components: [row],
         });
 
-        const collector = response.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 3_600_000 });
+        const collector = response.createMessageComponentCollector({
+            componentType: ComponentType.StringSelect,
+            time: 3_600_000
+        });
 
         collector.on('collect', async i => {
             const selection = i.values[0];
